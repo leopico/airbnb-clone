@@ -9,8 +9,9 @@ interface HomeProps {
   searchParams: IListingsParams
 }
 
-const Home = async ({ searchParams }: HomeProps) => {
-  const listings = await getListings(searchParams);
+const Home = async ({ searchParams = {} }: HomeProps) => {
+  const { userId, guestCount, roomCount, bathroomCout, startDate, endDate, locationValue, category, ...params } = searchParams
+  const listings = await getListings({ userId, guestCount, roomCount, bathroomCout, startDate, endDate, locationValue, category, ...params });
   const currentUser = await getCurrentUser();
 
 
@@ -22,7 +23,6 @@ const Home = async ({ searchParams }: HomeProps) => {
     )
   }
 
-  // throw new Error("Something went wrong!") for testing error page
 
   return (
     <ClientOnly>

@@ -57,8 +57,8 @@ export default async function getListings(
                     some: {
                         OR: [
                             {
-                                startDate: { lte: startDate },
-                                endDate: { gte: startDate }
+                                endDate: { gte: startDate },
+                                startDate: { lte: startDate }
                             },
                             { 
                                 startDate: { lte: endDate },
